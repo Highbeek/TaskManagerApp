@@ -6,24 +6,27 @@ interface Task {
   completed: boolean;
 }
 
-const initialState: Task[] = [];
+interface TasksState {
+  tasks: Task[];
+}
 
-const taskSlice = createSlice({
+const initialState: TasksState = {
+  tasks: [],
+};
+
+const tasksSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    addTask(state, action: PayloadAction<Task>) {
-      state.push(action.payload);
+    addTask: (state, action: PayloadAction<Task>) => {
+      state.tasks.push(action.payload);
     },
-    toggleTask(state, action: PayloadAction<string>) {
-      const task = state.find((task) => task.id === action.payload);
-      if (task) task.completed = !task.completed;
-    },
-    deleteTask(state, action: PayloadAction<string>) {
-      return state.filter((task) => task.id !== action.payload);
+    deleteTask: (state, action: PayloadAction<string>) => {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
   },
 });
 
-export const { addTask, toggleTask, deleteTask } = taskSlice.actions;
-export default taskSlice.reducer;
+export const { addTask, deleteTask } = tasksSlice.actions;
+
+export default tasksSlice.reducer;

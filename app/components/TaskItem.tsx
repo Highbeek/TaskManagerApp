@@ -1,35 +1,36 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import { useDispatch } from "react-redux";
-import { toggleTask, deleteTask } from "../../store/taskSlice";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Task } from "../types";
+import { useNavigation } from "@react-navigation/native";
 
 interface TaskItemProps {
-  task: {
-    id: string;
-    title: string;
-    completed: boolean;
-  };
+  task: Task;
 }
 
 const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
-  const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   return (
-    <View>
-      <TouchableOpacity onPress={() => dispatch(toggleTask(task.id))}>
-        <Text
-          style={{
-            textDecorationLine: task.completed ? "line-through" : "none",
-          }}
-        >
-          {task.title}
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => dispatch(deleteTask(task.id))}>
-        <Text>Delete</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate("TaskDetails", { taskId: task.id })}
+    >
+      <Text style={styles.title}>{task.title}</Text>
+      <Text>Status: {task.completed ? "Completed" : "Incomplete"}</Text>
+    </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+});
 
 export default TaskItem;
