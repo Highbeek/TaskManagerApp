@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Task {
-  id: string;
-  title: string;
-  completed: boolean;
-}
+import { Task } from "../app/types";
 
 interface TasksState {
   tasks: Task[];
@@ -24,9 +19,15 @@ const tasksSlice = createSlice({
     deleteTask: (state, action: PayloadAction<string>) => {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
+    markTaskAsCompleted: (state, action: PayloadAction<string>) => {
+      const task = state.tasks.find((task) => task.id === action.payload);
+      if (task) {
+        task.completed = true;
+      }
+    },
   },
 });
 
-export const { addTask, deleteTask } = tasksSlice.actions;
+export const { addTask, deleteTask, markTaskAsCompleted } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

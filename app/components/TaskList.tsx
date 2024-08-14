@@ -1,19 +1,41 @@
 import React from "react";
-import { FlatList, Text, View } from "react-native";
 import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { FlatList, View, StyleSheet, Text } from "react-native";
 import TaskItem from "./TaskItem";
+import { RootState } from "../../store";
 
 const TaskList: React.FC = () => {
-  const tasks = useSelector((state: RootState) => state.tasks);
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
 
   return (
-    <FlatList
-      data={tasks}
-      renderItem={({ item }) => <TaskItem task={item} />}
-      keyExtractor={(item) => item.id}
-    />
+    <View style={styles.container}>
+      {tasks.length === 0 ? (
+        <Text style={styles.noTasksText}>
+          No tasks available. Please add a task!
+        </Text>
+      ) : (
+        <FlatList
+          data={tasks}
+          renderItem={({ item }) => <TaskItem task={item} />}
+          keyExtractor={(item) => item.id}
+        />
+      )}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#87CEEB",
+  },
+  noTasksText: {
+    textAlign: "center",
+    marginTop: 20,
+    fontSize: 18,
+    color: "#FF6347",
+    fontWeight: "bold",
+  },
+});
 
 export default TaskList;
