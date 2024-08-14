@@ -12,12 +12,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import Toast from "react-native-toast-message";
-import { TaskDetailsProps } from "../types";
-import { markTaskAsCompleted, deleteTask } from "../../store/taskSlice";
+import { TaskDetailsProps } from "../../types";
+import { markTaskAsCompleted, deleteTask } from "../../../store/taskSlice";
 
 const TaskDetails: React.FC<TaskDetailsProps> = ({ route }) => {
   const { taskId, taskTitle, taskDescription, dueDate, completed } =
-    route.params;
+    route?.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
 

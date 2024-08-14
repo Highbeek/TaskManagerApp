@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { FlatList, View, StyleSheet, Text } from "react-native";
-import TaskItem from "./TaskItem";
-import { RootState } from "../../store";
+import TaskItem from "../taskItem/TaskItem";
+import { RootState } from "../../../store";
 
 const TaskList: React.FC = () => {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);

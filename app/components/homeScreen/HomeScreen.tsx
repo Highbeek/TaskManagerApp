@@ -5,15 +5,14 @@ import {
   TextInput,
   StyleSheet,
   Text,
-  ScrollView,
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useDispatch } from "react-redux";
 import uuid from "react-native-uuid";
-import { addTask } from "../../store/taskSlice";
-import TaskList from "../components/TaskList";
+import { addTask } from "../../../store/taskSlice";
+import TaskList from "../taskList/TaskList";
 import Toast from "react-native-toast-message";
 
 const HomeScreen: React.FC = ({ navigation }) => {
@@ -55,7 +54,7 @@ const HomeScreen: React.FC = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.header}>Task Manager App</Text>
         <View style={styles.inputContainer}>
           <TextInput
@@ -91,7 +90,7 @@ const HomeScreen: React.FC = ({ navigation }) => {
             onChange={handleDateChange}
           />
         )}
-      </ScrollView>
+      </View>
       <Toast />
     </SafeAreaView>
   );
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#87CEEB",
   },
   container: {
-    flexGrow: 1,
+    flex: 1,
     padding: 20,
   },
   header: {

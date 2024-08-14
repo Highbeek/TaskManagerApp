@@ -2,7 +2,7 @@ import React from "react";
 import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { TaskItemProps, TaskDetailsNavigationProp } from "../types";
+import { TaskItemProps, TaskDetailsNavigationProp } from "../../types";
 
 const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
   const navigation = useNavigation<TaskDetailsNavigationProp>();
