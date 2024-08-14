@@ -24,6 +24,7 @@ npm-debug.*
 yarn-debug.*
 yarn-error.*
 .yarn/cache
+.expo-cache/
 
 # macOS
 .DS_Store
@@ -31,6 +32,7 @@ yarn-error.*
 
 # local env files
 .env*.local
+.env
 
 # typescript
 *.tsbuildinfo
