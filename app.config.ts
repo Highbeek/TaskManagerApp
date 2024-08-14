@@ -3,7 +3,7 @@ import { ExpoConfig, ConfigContext } from "expo/config";
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: "TaskManagerApp",
-  slug: "TaskManagerApp",
+  slug: "taskManager",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
@@ -27,5 +27,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   extra: {
     storybookEnabled: process.env.STORYBOOK === "1",
+    eas: {
+      projectId: "da7fbcb5-ec60-4775-b6d9-85676b3a7432",
+    },
   },
+  owner: "highbeek",
 });
